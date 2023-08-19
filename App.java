@@ -1,7 +1,9 @@
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
-        Spiral();
+        //ExpressionSolverRunner ();
+        //myFrameKey frame = new myFrameKey();
+        myMouseTest test = new myMouseTest();
     }
     public static void HistogramRunner(){
         Scanner kbd = new Scanner(System.in);
@@ -14,6 +16,7 @@ public class App {
         Scanner kbd = new Scanner(System.in);
         String input = kbd.nextLine();
         ExpressionSolver solve = new ExpressionSolver(input);
+        System.out.println(solve.test());
     }
     public static void FibonacciRunner(){
         Scanner kbd = new Scanner(System.in);
