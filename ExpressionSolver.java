@@ -1,21 +1,58 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 public class ExpressionSolver {
     private String[] expression;
     private String clonexpress;
-    private String plus;
-    private String minus;
-    private String multiple;
-    private String divide;
+    private ArrayList<String>exp;
+    //private String plus;
+    //private String minus;
+    //private String multiple;
+    //private String divide;
     public ExpressionSolver(String input){
         expression = input.split(" ");
         clonexpress = input;
-        plus = "+";
-        minus = "-";
-        multiple = "*";
-        divide = "/";
+        exp = new ArrayList<String>(Arrays.asList(expression));
     }
-    public int test(){
+
+    public int solve() {
+        for(int i = 0; i < exp.size(); i++) {
+            if(exp.get(i).equals("*") || exp.get(i).equals("/")) {
+                if(exp.get(i).equals("*")) {
+                    int t = Integer.parseInt(exp.get(i-1)) * Integer.parseInt(exp.get(i+1));
+                    exp.remove(i+1);
+                    exp.remove(i-1);
+                    exp.set(i-1, t+"");
+                } else if(exp.get(i).equals("/")) {
+                    int t = Integer.parseInt(exp.get(i-1)) / Integer.parseInt(exp.get(i+1));
+                    exp.remove(i+1);
+                    exp.remove(i-1);
+                    exp.set(i-1, t+"");
+                }
+                i--;
+            }
+        }
+        for(int i = 0; i < exp.size(); i++) {
+            if(exp.get(i).equals("+") || exp.get(i).equals("-")) {
+                if(exp.get(i).equals("+")) {
+                    int t = Integer.parseInt(exp.get(i-1)) + Integer.parseInt(exp.get(i+1));
+                    exp.remove(i+1);
+                    exp.remove(i-1);
+                    exp.set(i-1, t+"");
+                } else if(exp.get(i).equals("-")) {
+                    int t = Integer.parseInt(exp.get(i-1)) - Integer.parseInt(exp.get(i+1));
+                    exp.remove(i+1);
+                    exp.remove(i-1);
+                    exp.set(i-1, t+"");
+                }
+                i--;
+            }
+        }
+        return Integer.parseInt(exp.get(0));
+    }
+    /*public int test(){
         int result = Integer.parseInt(expression[0]);
         for (int i = 1;i<expression.length;i++){
             if (expression[i].equals(multiple)){
@@ -101,7 +138,7 @@ public class ExpressionSolver {
             return false;
         }
         return true;
-    }
+    }*/
     /*public int solve() {
         // Split the expression into parts based on addition and subtraction operators
         String[] parts = expression.split("[\\+\\-]");

@@ -1,12 +1,22 @@
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
-        //ExpressionSolverRunner ();
+        ExpressionSolverRun ();
         //myFrameKey frame = new myFrameKey();
         //myMouseTest test = new myMouseTest();
         
         
-}
+    }
+    public static void ExpressionSolverRun(){
+        Scanner sc = new Scanner(System.in);
+        ExpressionSolver e;
+        String exp;
+        while(sc.hasNext()) {
+            exp = sc.nextLine();
+            e = new ExpressionSolver(exp);
+            System.out.println(exp + " = " + e.solve());
+        }
+    }
     public static void karenRunner(){
         System.out.println("Hello adventurer!");
         System.out.println("Pick a character");
@@ -173,12 +183,12 @@ public class App {
         test.run(input);
         System.out.println(test.toString());
     }
-    public static void ExpressionSolverRunner(){
+    /*public static void ExpressionSolverRunner(){
         Scanner kbd = new Scanner(System.in);
         String input = kbd.nextLine();
         ExpressionSolver solve = new ExpressionSolver(input);
         System.out.println(solve.test());
-    }
+    }*/
     public static void FibonacciRunner(){
         Scanner kbd = new Scanner(System.in);
         String input = kbd.nextLine();
